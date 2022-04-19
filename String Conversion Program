@@ -40,3 +40,10 @@ public class StringServer {
       }
    }
 }
+
+
+//Steps:
+1. Run the server program first in command prompt.
+2. Run the client program then in another command prompt.
+3. Enter the sentence: (enter a sentence in small letter or mixed)
+4. Output will be from server side in capital letter in the command prompt of the client side.
