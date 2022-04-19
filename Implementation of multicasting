@@ -11,13 +11,12 @@ public class MulticastDateServer {
          byte[] buf = new Date().toString().getBytes();
          InetAddress group = InetAddress.getByName("230.0.0.1");
          DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 1313);
-         Socket.send(packet);
+         socket.send(packet);
          Thread.sleep(1500);
       }
-      Socket.close();
+      socket.close();
    }
 }
-
 
 ------
 CLIENT
@@ -29,15 +28,15 @@ public class MulticastDateClient {
    public static void main(String args[]) throws Exception {
       MulticastSocket socket = new MulticastSocket(1313);
       InetAddress group = InetAddress.getByName("230.0.0.1");
-      Socket.joinGroup(group);
+      socket.joinGroup(group);
       for (int i = 0; i < 10; i++) {
          byte[] buf = new byte[256];
          DatagramPacket packet = new DatagramPacket(buf, buf.length);
-         Socket.receive(packet);
+         socket.receive(packet);
          String received = new String(packet.getData());
          System.out.println("Current server time: " + received);
       }
-      Socket.leaveGroup(group);
-      Socket.close();
+      socket.leaveGroup(group);
+      socket.close();
    }
 }
