@@ -1,3 +1,6 @@
+------
+CLIENT
+------
 import java.io.*;
 import java.net.*;
 public class StringClient {
@@ -15,4 +18,25 @@ public class StringClient {
         System.out.println("FROM SERVER: " + modifiedSentence);
         clientSocket.close();
     }
+}
+
+------
+SERVER
+------
+import java.io.*;
+import java.net.*;
+public class StringServer {
+   public static void main(String[] args) throws Exception {
+      String clientSentence;
+      String capitalizedSentence;
+      ServerSocket welcomeSocket = new ServerSocket(2345);
+      while(true) {
+         Socket connectionSocket = welcomeSocket.accept();
+         BufferedReader inFromClient = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
+         DataOutputStream outToClient = new DataOutputStream(connectionSocket.getOutputStream());
+         clientSentence = inFromClient.readLine();
+         capitalizedSentence = clientSentence.toUppercase() + '\n';
+         outToClient.writeBytes(capitalizedSentence);
+      }
+   }
 }
