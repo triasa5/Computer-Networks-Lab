@@ -1,0 +1,18 @@
+import java.io.*;
+import java.net.*;
+public class StringClient {
+    public static void main(String []args) throws exception {
+        String sentence;
+        String modifiedSentence;
+        System.out.println("Enter the sentence: ");
+        BufferedReader inFormUser = new BufferedReader(new InputStreamReader(System.in));
+        Socket clientSocket = new Socket("localhost", 2345);
+        DataOutputStream outToServer = new DataOutputStream(clientSocket.getInputStream());
+        BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        sentence = inFromUSer.readLine();
+        outToServer.writeBytes(sentence + '\n');
+        modifiedSentence = inFormServer.readLine();
+        System.out.println("FROM SERVER: " + modifiedSentence);
+        clientSocket.close();
+    }
+}
