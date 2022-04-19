@@ -5,7 +5,7 @@ public class StringClient {
         String sentence;
         String modifiedSentence;
         System.out.println("Enter the sentence: ");
-        BufferedReader inFormUser = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader inFromUser = new BufferedReader(new InputStreamReader(System.in));
         Socket clientSocket = new Socket("localhost", 2345);
         DataOutputStream outToServer = new DataOutputStream(clientSocket.getInputStream());
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
