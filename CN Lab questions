@@ -1,0 +1,19 @@
+-------------
+TRIASA MUNSHI
+ROLL-50
+DEPT-CSE
+YEAR-3RD
+-------------
+1. Write a program to perform the following:
+i) take input through keyboard an IP address in either binary or dotted decimal notation
+ii) display the output at the console which consists of:
+	a) the class of the address
+	b) the corresponding network address
+
+2. Write a program to perform the following:
+i) take input through keyboard
+	a) the site address
+	b) number of subnets required
+ii) display the output at the console consisting of 
+	a) subnet mask
+	b) the strating and the last address for each subnet
