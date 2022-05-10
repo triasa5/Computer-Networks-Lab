@@ -240,3 +240,40 @@ public class Main
 	}
 }
 
+
+rough:
+static void findAddresses(String adr, int subnet) {
+        int index = adr.indexOf("/");
+        String str = adr.substring(index + 1, adr.length());
+        int prefix = Integer.parseInt(str);
+        int suffix = 32 - prefix;
+        int total = Math.pow(2, suffix);   
+        int adrPerSubnet = total / subnet;
+        int subnetSuffix = (int)(Math.log(adrPerSubnet) / Math.log(2));
+        int subnetPrefix = 32 - subnetSuffix;
+        for (int i = 1; i <= subnet; i ++) {
+            if (i == 1) {
+                System.out.println("First address of subnet number " + i + ": " + adr.substring(0, index) + "/" + subnetPrefix);
+            }
+            else {
+                System.out.println("First address of subnet number " + i + ": " + adr.substring(0, index) + "/" + subnetPrefix);
+            }
+            int in = -1;
+            int dot = 3;
+            for(int i = 0 ; i <adr.length(); i++) {
+                if(adr.charAt(i) == '.') {
+                    dot -= 1;
+                    if(dot == 0) {
+                        in = i;
+                        break;                    
+                    }
+                }
+            }
+            
+            String end = adr.substring(in + 1, index);
+            int endInt = Integer.parseInt(end);
+            int newEnd = endInt + adrPerSubnet;
+            System.out.println("Last address of subnet number " + i + ": " + adr.substring(0,in) + Integer.toString(newEnd) "/" + subnetPrefix);
+            endInt += 1;
+        }
+    }
