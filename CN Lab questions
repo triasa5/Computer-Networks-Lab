@@ -104,3 +104,139 @@ class NetworkId {
     }
 }
 
+---------
+Problem-2
+---------
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+public class Main
+{
+    static String findClass(String str){
+        // Calculating first occurrence of '.' in str
+        int index = str.indexOf('.');
+        // First octate in str in decimal form
+        String ipsub = str.substring(0,index);
+        int ip = Integer.parseInt(ipsub);
+        // Class A
+        if (ip>=0 && ip<=127)
+            return "A";
+        // Class B
+        else if (ip>=128 && ip<=191)
+            return "B";
+        // Class C
+        else if (ip>=192 && ip<223)
+            return "C";
+        // Class D
+        else if (ip >=224 && ip<=239)
+            return "D";
+        // Class E
+        else
+            return "E";
+    }
+    static void findSubnetMask(String adr, int subnet) {
+        String cls = findClass(adr);
+        int pow = (int)(Math.log(subnet) / Math.log(2));
+        String mask = "";
+        String binary = "";
+        if (cls == "A") {
+            if (pow <= 8) {
+                for (int i = 0; i < pow; i++) {
+                    binary += "1";
+                }
+                for (int i = 0; i < 8 - pow; i++){
+                    binary += "0";
+                }
+                int dec = Integer.parseInt(binary, 2);
+                String dectoString = Integer.toString(dec);
+                mask = "255." + dectoString + ".0.0";
+            }
+            else {
+                int rest = pow - 8;
+                for (int i = 0; i < rest; i++) {
+                    binary += "1";
+                }
+                for (int i = 0; i < 8 - rest; i++) {
+                    binary += "0";
+                }
+                int dec = Integer.parseInt(binary, 2);
+                String dectoString = Integer.toString(dec);
+                mask = "255.255." + dectoString + ".0";
+            }
+            System.out.println("The subnet mask is: " + mask);
+        }
+        else if (cls == "B") {
+            if (pow <= 8) {
+                for (int i = 0; i < pow; i++) {
+                    binary += "1";
+                }
+                for (int i = 0; i < 8 - pow; i++) {
+                    binary += "0";
+                }
+                int dec = Integer.parseInt(binary, 2);
+                String dectoString = Integer.toString(dec);
+                mask = "255.255." + dectoString + ".0";
+            }
+            else {
+                int rest = pow - 8;
+                for (int i = 0; i < pow - 8; i++) {
+                    binary += "1";
+                }
+                for (int i = 0; i < 8 - rest; i++) {
+                    binary += "0";
+                }
+                int dec = Integer.parseInt(binary, 2);
+                String dectoString = Integer.toString(dec);
+                mask = "255.255.255." + dectoString;
+            }
+            System.out.println("The subnet mask is: " + mask);
+        }
+        else if (cls == "C") {
+            if (pow <= 8) {
+                for (int i = 0; i < pow; i++) {
+                    binary += "1";
+                }
+                for (int i = 0; i < 8 - pow; i++){
+                    binary += "0";
+                }
+                int dec = Integer.parseInt(binary, 2);
+                String dectoString = Integer.toString(dec);
+                mask = "255.255.255" + dectoString;
+                System.out.println("The subnet mask is: " + mask);
+            }
+            else {
+                System.out.println("Inappropriate number of subnets.");
+            }
+        }
+        else if (cls == "D" || cls == "E") {
+            System.out.println("Class D and E has no subnet mask!");
+            return;
+        }
+    }
+    
+    static void startEndAddress() {
+        
+    }
+    
+        /*int index = adr.indexOf("/");
+        String str = adr.substring(index + 1, adr.length());
+        int prefix = Integer.parseInt(str);
+        int suffix = 32 - prefix;
+        int total = Math.pow(2,suffix);
+        */
+    
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.print("Enter an IP address in dotted decimal format: ");
+		String adr = sc.nextLine();
+		System.out.print("Enter the number of subnets: ");
+		int subnet = sc.nextInt();
+		findSubnetMask(adr, subnet);
+	}
+}
+
