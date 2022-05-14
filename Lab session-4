@@ -218,26 +218,14 @@ public class Main
             return;
         }
     }
-    
-    static void startEndAddress() {
-        
+    public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+	System.out.print("Enter an IP address in dotted decimal format: ");
+	String adr = sc.nextLine();
+	System.out.print("Enter the number of subnets: ");
+	int subnet = sc.nextInt();
+	findSubnetMask(adr, subnet);
     }
-    
-        /*int index = adr.indexOf("/");
-        String str = adr.substring(index + 1, adr.length());
-        int prefix = Integer.parseInt(str);
-        int suffix = 32 - prefix;
-        int total = Math.pow(2,suffix);
-        */
-    
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter an IP address in dotted decimal format: ");
-		String adr = sc.nextLine();
-		System.out.print("Enter the number of subnets: ");
-		int subnet = sc.nextInt();
-		findSubnetMask(adr, subnet);
-	}
 }
 
 
