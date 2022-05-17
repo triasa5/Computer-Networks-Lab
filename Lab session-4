@@ -36,7 +36,7 @@ class NetworkId {
         else if (ip>=128 && ip<=191)
             return "B";
         // Class C
-        else if (ip>=192 && ip<223)
+        else if (ip>=192 && ip<=223)
             return "C";
         // Class D
         else if (ip >=224 && ip<=239)
@@ -211,7 +211,7 @@ public class Subnets {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter an IP address in dotted decimal format: ");
         String enteredIP = sc.nextLine();
-        System.out.println("Enter number of subnets: ");
+        System.out.print("Enter number of subnets: ");
         int enteredSubnets = sc.nextInt();
         IP address = new IP(enteredIP, enteredSubnets);
         System.out.println(address);
