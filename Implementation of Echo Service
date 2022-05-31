@@ -56,3 +56,9 @@ public class EchoServer {
 		}
 	}
 }
+
+OUTPUT:
+For Server:
+java EchoServer 7
+For Client:
+java EchoClient localhost hello
